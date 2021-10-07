@@ -1,40 +1,136 @@
+/* jeli zadeklarujemy min-height i min-width na 100%to obrazek który znajduje się w headerze, zawsze 
+będzie go w całości wypełniał i będzie to ładn ie wyglądało*/
 
+/* na początku wszystkie obrazki są niewidoczne gdyż zadeklarowaliśmy opacity wartośc zero
+gdyby nie było tej właściwości pierwsym obrazkiem byłby /duzy most/ gdyż wszystkie ułożone są na sobie /position absolute/
+a /duzy most/ w html jest jakjo ostatni więc będzie na samej górze*/
 
+/*pierwszy obrazek jest odpalany od razu*/
 
-
-
-
-
-
-
-
-
-
-
-
-
+/* h1 {animation: both}
+lub opacity:0; dopóki nie wystartujesz z animacją miej ustawienie zero procent */
 * {
     margin: 0;
     padding: 0;
 }
 
 header {
-  height: 600px;
-  position: relative;
-  overflow: hidden;
-
+    height: 600px;
+    position: relative;
+    overflow: hidden;
 }
 
 img {
-  position: absolute;
-  width: 100%;
+    position: absolute;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0; /*wszystkie obrazki przezroczyste na początku*/
+    animation: slider 15s infinite linear;
+}
+/*opóźniamy o  1/3 animacji*/
+img:nth-child(2) {
+    animation-delay: 5s;
+}
+
+/*opóźniamy o  2/3 animacji*/
+img:nth-child(3) {
+    animation-delay: 10s;
+}
+
+img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    animation: slider 15s infinite linear;
 }
 
 h1 {
-  position:absolute;
+  position: absolute;
   font-size: 60px;
-  background-color: rgba (0, 0, 0, 0.8);
-  font-family:'open sans', sans-serif;
-  color: white;
-  padding: 10px 40px;
+  background-color: rgba(0,0,0,0.6);
+  font-family: sans-serif;
+  color:white;
+  padding: 20px 60px;
+  animation: txt 15s linear infinite both;
+  /* opacity: 0; */
+}
+
+h1:nth-of-type(1) {
+    top: 30%;
+    right: 20%;
+}
+h1:nth-of-type(2) {
+    bottom: 10%;
+    left: 10%;
+    animation-delay: 5s;
+}
+
+h1:nth-of-type(3) {
+    top: 10%;
+    left: 35%;
+    animation-delay: 10s;
+    
+}
+
+/* zostawiamy 5% procent na przejście jednego zdjęcia w drugie 0-5% i 33.33-38.33%*/
+/* w miejscu klatki 33.34% zostaje uruchamiana kolejna animacja */
+
+/* czas trwania animacji został podzielony na 3 obrazki*/
+
+/* gdy np. animacja będzie trwać 15s. to będziemy mieć zmianę obrazka po 5s.*/
+
+@keyframes slider {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+
+    33.33% {
+        opacity: 1;
+    }
+    38.33% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+/* na przejścia pozostawiamy po 10%*/
+@keyframes txt {
+    0% {
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+
+    23.33% {
+        opacity: 1;
+    }
+    28.33% {
+        opacity: 0;
+    }
+
+    33.33% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
